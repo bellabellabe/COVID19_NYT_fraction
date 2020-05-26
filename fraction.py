@@ -18,9 +18,9 @@ external_stylesheets=['https://codepen.io/amyoshino/pen/jzXypZ.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server=app.server
 app.title = 'Fraction_MSA_map'
-# path_to_file = 'test.csv'
+path_to_file = 'test.csv'
 
-path_to_file = 'MSA_overlapfraction_choro.csv'
+# path_to_file = 'MSA_overlapfraction_choro.csv'
 df = pd.read_csv(path_to_file, dtype={"CountyFips": str})
 available_MSAs = df['MSAName'].unique()
 available_dates = df['date'].unique()
