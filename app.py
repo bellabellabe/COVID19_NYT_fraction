@@ -1,3 +1,6 @@
+from rq import Queue
+from worker import conn
+from utils import count_words_at_url
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -12,6 +15,8 @@ from urllib.request import urlopen
 import json
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
     counties = json.load(response)
+q = Queue(connection=conn)
+result = q.enqueue(count_words_at_url, 'http://heroku.com')
 
 external_stylesheets=['https://codepen.io/amyoshino/pen/jzXypZ.css']
 
